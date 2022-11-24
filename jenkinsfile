@@ -11,6 +11,11 @@ pipeline{
                 dependencyCheck additionalArguments: '--format HTML --format XML --suppresion suppresion.xml', odcInstallation: 'Default'
             }
         }
+        stage('Testing'){
+            steps{
+                echo 'Selenium Testing here'
+            }
+        }
         stage('SonarQube'){
             steps{
                 script{

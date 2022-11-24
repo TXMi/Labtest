@@ -1,0 +1,24 @@
+Started by user unknown or anonymous
+Lightweight checkout support not available, falling back to full checkout.
+Checking out git https://github.com/TXMi/Labtest.git into /var/jenkins_home/workspace/test@script/985b81cd5c6dcdd7e92e14f27d69e227c2656460da12924706b1ba5b7847e934 to read jenkinsfile
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/test@script/985b81cd5c6dcdd7e92e14f27d69e227c2656460da12924706b1ba5b7847e934/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/TXMi/Labtest.git # timeout=10
+Fetching upstream changes from https://github.com/TXMi/Labtest.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/TXMi/Labtest.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Seen branch in repository origin/main
+Seen 1 remote branch
+ > git show-ref --tags -d # timeout=10
+Checking out Revision 56f62da5bef79bfccb546007b2d376d7b8bbaf47 (origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 56f62da5bef79bfccb546007b2d376d7b8bbaf47 # timeout=10
+Commit message: "SonarQube config"
+ > git rev-list --no-walk e5a86c9db8a31487add69dcadcc0258344449e89 # timeout=10
+[8mha:////4J3kjd0YK34Qywl1JELCiNJ1oQ0g0bLYg8WZmrvNe6XKAAAAoh+LCAAAAAAAAP9tjTEOwjAQBM8BClpKHuFItIiK1krDC0x8GCfWnbEdkooX8TX+gCESFVvtrLSa5wtWKcKBo5UdUu8otU4GP9jS5Mixv3geZcdn2TIl9igbHBs2eJyx4YwwR1SwULBGaj0nRzbDRnX6rmuvydanHMu2V1A5c4MHCFXMWcf8hSnC9jqYxPTz/BXAFEIGsfuclm8zQVqFvQAAAA==[0m[Pipeline] Start of Pipeline
+[8mha:////4C+Lj2G9ATtwgf/Fhp8q1nQfLuvhj/Gqdtv0t58AJEz6AAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQSbaGmsbAmNJ0AWEZb8zwLrbuWJvJp3kLiJlZNMMm+a93rDOic4UbLcG+wdZu14DKOti0+U+lugiXu6ck2YKRguzSSpM+cFJRUDS1gDKwEbgzpQdmgLbIVXD9UGhba9lFS/o4DGdQM8gYlqLiqVL8wJdvexy4Q/z18BzDEWYIfa/QdLdtVavAAAAA==[0m[Pipeline] End of Pipeline
+Finished: SUCCESS

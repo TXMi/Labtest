@@ -1,0 +1,79 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@1254.v3f64639b_11dd">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+  </actions>
+  <queueId>12</queueId>
+  <timestamp>1669265203862</timestamp>
+  <startTime>1669265203883</startTime>
+  <result>SUCCESS</result>
+  <duration>87</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>SUCCESS</result>
+    <script>pipeline {
+  agent any
+  stages {
+    stage (&apos;Checkout&apos;) {
+      steps {
+        git branch:&apos;master&apos;, url: &apos;https://github.com/OWASP/Vulnerable-Web-Application.git&apos;
+      }
+    }
+    stage(&apos;Code Quality Check via SonarQube&apos;) {
+      steps {
+        script {
+          def scannerHome = tool &apos;SonarQube&apos;; // &lt;- Name of your SonarQube in Jenkins&apos; System Configuration
+            withSonarQubeEnv(&apos;SonarQube&apos;) { // &lt;- Same as above?
+              sh &quot;${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP -Dsonar.sources=.&quot; // &lt;- Project key should be the name of your project on SonarQube&apos;s webpage
+            }
+        }
+      }
+    }
+  }
+  post {
+    always {
+      recordIssues enabledForFailure: true, tool: sonarQube()
+    }
+  }
+}</script>
+    <loadedScripts class="map"/>
+    <durabilityHint>MAX_SURVIVABILITY</durabilityHint>
+    <timings class="concurrent-hash-map">
+      <entry>
+        <string>flowNode</string>
+        <long>28758107</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>5536425</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>27929387</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>13257322</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>7790014</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>3</iota>
+    <head>1:3</head>
+    <done>true</done>
+    <resumeBlocked>false</resumeBlocked>
+  </execution>
+  <completed>true</completed>
+  <checkouts class="hudson.util.PersistedList"/>
+</flow-build>

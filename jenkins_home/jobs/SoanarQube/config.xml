@@ -1,0 +1,36 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1254.v3f64639b_11dd">
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3536.vb_8a_6628079d5">
+    <script>pipeline {
+  agent any
+  stages {
+    stage (&apos;Checkout&apos;) {
+      steps {
+        git branch:&apos;master&apos;, url: &apos;https://github.com/OWASP/Vulnerable-Web-Application.git&apos;
+      }
+    }
+    stage(&apos;Code Quality Check via SonarQube&apos;) {
+      steps {
+        script {
+          def scannerHome = tool &apos;SonarQube&apos;; // &lt;- Name of your SonarQube in Jenkins&apos; System Configuration
+            withSonarQubeEnv(&apos;SonarQube&apos;) { // &lt;- Same as above?
+              sh &quot;${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP -Dsonar.sources=.&quot; // &lt;- Project key should be the name of your project on SonarQube&apos;s webpage
+            }
+        }
+      }
+    }
+  }
+  post {
+    always {
+      recordIssues enabledForFailure: true, tool: sonarQube()
+    }
+  }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
