@@ -1,14 +1,14 @@
 pipeline{
     agent any
     stages{
-        stage('Build'){
+        stage('Checkout'){
             steps{
-                echo 'Building...'
+                echo 'Successfully Checkout'
             }
         }
-        stage('Test'){
+        stage('Dependency Check'){
             steps{
-                echo 'Testing...'
+                dependencyCheck additionalArguments: '--format HTML --format XML --suppresion suppresion.xml', odcInstallation: 'Default'
             }
         }
         stage('Deploy'){
