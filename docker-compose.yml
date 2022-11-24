@@ -25,6 +25,12 @@ services:
     ports:
       - "4001:4001"
     restart: always
+  sonar-cube:
+    container_name: sonar-cube
+    image: sonarqube
+    ports:
+      - "9000:9000"
+    restart: always
 
 volumes:
   jenkins_data:
