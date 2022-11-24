@@ -11,10 +11,21 @@ pipeline{
                 dependencyCheck additionalArguments: '--format HTML --format XML --suppresion suppresion.xml', odcInstallation: 'Default'
             }
         }
-        stage('Deploy'){
+        stage('SonarQube'){
             steps{
-                echo 'Deploying...'
+                script{
+                    def scannerHome = tool 'SonarQube'
+                    withSonarQubeEnv('SonarQube'){
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projecKey=OWASP-Dsonar.sources=."
+                    }
+                }
             }
         }
+        post{
+            always{
+                recordIssues enabledForFailure: true, tool: SonarQube()
+            }
+        }
+
     }
 }
